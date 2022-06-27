@@ -1,6 +1,5 @@
-import axios, { AxiosResponse } from "axios";
-import { useState } from "react";
-import { useQuery } from "react-query";
+import { AxiosResponse } from "axios";
+import { useSuperHeroesData } from "../hooks/useSuperHeroesData";
 
 interface SuperHero {
   id: number;
@@ -8,31 +7,16 @@ interface SuperHero {
   alterEgo: string;
 }
 
-const fetchSuperHeroes = () => axios.get("http://localhost:4000/superheroes");
-
 function RQSuperHeroes() {
-  const [interval, setInterval] = useState<number | false>(3000);
-
   const onSuccess = (data: AxiosResponse) => {
     console.log("Perform side effect after data fetching", data);
-    if (data.data.length === 4) setInterval(false);
   };
 
   const onError = (data: Error) => {
     console.log("Perform side effect after encountering error", data);
-    if (data.name) setInterval(false);
   };
 
-  const { isLoading, isFetching, isError, error, data } = useQuery<AxiosResponse, Error>(
-    "super-heroes",
-    fetchSuperHeroes,
-    {
-      // enabled: false,
-      refetchInterval: interval,
-      onSuccess,
-      onError,
-    }
-  );
+  const { isLoading, isFetching, isError, error, data, refetch } = useSuperHeroesData(onSuccess, onError);
 
   if (isLoading || isFetching) {
     return <h2>Loading...</h2>;
@@ -45,7 +29,7 @@ function RQSuperHeroes() {
   return (
     <>
       <h2>RQSuperHeroes</h2>
-      {/* <button onClick={() => refetch()}>Fetch heroes</button> */}
+      <button onClick={() => refetch()}>Fetch heroes</button>
       {data?.data.map((hero: SuperHero) => (
         <div key={hero.id}>{hero.name}</div>
       ))}
