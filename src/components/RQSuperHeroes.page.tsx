@@ -1,4 +1,5 @@
 import { AxiosResponse } from "axios";
+import { Link } from "react-router-dom";
 import { useSuperHeroesData } from "../hooks/useSuperHeroesData";
 
 interface SuperHero {
@@ -31,7 +32,9 @@ function RQSuperHeroes() {
       <h2>RQSuperHeroes</h2>
       <button onClick={() => refetch()}>Fetch heroes</button>
       {data?.data.map((hero: SuperHero) => (
-        <div key={hero.id}>{hero.name}</div>
+        <div key={hero.id}>
+          <Link to={`/rq-super-heroes/${hero.id}`}>{hero.name}</Link>
+        </div>
       ))}
     </>
   );
