@@ -3,7 +3,7 @@ import { SuperHero } from "../types/SuperHero";
 import { apiClient } from "./client";
 
 const fetchSuperHeroes = async (): Promise<SuperHero[]> => {
-  const resp = await apiClient.get("");
+  const resp = await apiClient.get("/superheroes");
   return resp.data;
 };
 

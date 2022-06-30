@@ -3,7 +3,7 @@ import { SuperHero } from "../types/SuperHero";
 import { apiClient } from "./client";
 
 const fetchSuperHero = async ({ queryKey }: { queryKey: QueryKey }): Promise<SuperHero> => {
-  const resp = await apiClient.get(`/${queryKey?.[1]}`);
+  const resp = await apiClient.get(`/superheroes/${queryKey?.[1]}`);
   return resp.data;
 };
 

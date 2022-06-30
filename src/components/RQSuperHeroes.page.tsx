@@ -1,9 +1,9 @@
-import { AxiosResponse } from "axios";
 import { Link } from "react-router-dom";
 import { useSuperHeroesData } from "../hooks/useSuperHeroesData";
+import { SuperHero } from "../types/SuperHero";
 
 function RQSuperHeroes() {
-  const onSuccess = (data: AxiosResponse) => {
+  const onSuccess = (data: SuperHero[]) => {
     console.log("Perform side effect after data fetching", data);
   };
 
