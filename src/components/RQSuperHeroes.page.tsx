@@ -2,12 +2,6 @@ import { AxiosResponse } from "axios";
 import { Link } from "react-router-dom";
 import { useSuperHeroesData } from "../hooks/useSuperHeroesData";
 
-interface SuperHero {
-  id: number;
-  name: string;
-  alterEgo: string;
-}
-
 function RQSuperHeroes() {
   const onSuccess = (data: AxiosResponse) => {
     console.log("Perform side effect after data fetching", data);
@@ -31,7 +25,7 @@ function RQSuperHeroes() {
     <>
       <h2>RQSuperHeroes</h2>
       <button onClick={() => refetch()}>Fetch heroes</button>
-      {data?.data.map((hero: SuperHero) => (
+      {data?.map((hero) => (
         <div key={hero.id}>
           <Link to={`/rq-super-heroes/${hero.id}`}>{hero.name}</Link>
         </div>
