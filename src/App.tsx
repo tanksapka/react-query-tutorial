@@ -5,6 +5,7 @@ import "./App.css";
 import DependentQueriesPage from "./components/DependentQueries.page";
 import DynamicParallelPage from "./components/DynamicParallel.page";
 import HomePage from "./components/Home.page";
+import InfiniteQueriesPage from "./components/InfiniteQueries.page";
 import PaginatedQueriesPage from "./components/PaginatedQueries.page";
 import ParallelQueriesPage from "./components/ParallelQueries.page";
 import RQSuperHeroPage from "./components/RQSuperHero.page";
@@ -32,9 +33,13 @@ function App() {
               <li>
                 <Link to="/rq-paginated">Pagination</Link>
               </li>
+              <li>
+                <Link to="/rq-infinite">Infinite</Link>
+              </li>
             </ul>
           </nav>
           <Routes>
+            <Route path="/rq-infinite" element={<InfiniteQueriesPage />} />
             <Route path="/rq-paginated" element={<PaginatedQueriesPage />} />
             <Route path="/rq-dependent" element={<DependentQueriesPage email="example@example.com" />} />
             <Route path="/rq-dynamic-parallel" element={<DynamicParallelPage heroIds={["1", "3"]} />} />
